@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konwerter na Kod Morse'a</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 90%;
+            width: 400px;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .link {
+            margin-top: 10px;
+            display: block;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .link:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+            input[type="text"], textarea {
+                padding: 8px;
+                margin: 8px 0;
+            }
+            button {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Konwerter na Kod Morse'a</h1>
+    <input type="text" id="inputText" placeholder="Wpisz zdanie lub wyraz">
+    <button onclick="convertToMorse()">Konwertuj</button>
+    <textarea id="outputText" rows="4" placeholder="Kod Morse'a pojawi się tutaj" readonly></textarea>
+    <a href="decode.html" class="link">Przejdź do dekodowania Morse'a</a>
+</div>
+
+<script>
+    const morseCode = {
+        'a': '.-',    'b': '-...',  'c': '-.-.', 
+        'd': '-..',   'e': '.',     'f': '..-.',
+        'g': '--.',   'h': '....',  'i': '..',
+        'j': '.---',  'k': '-.-',   'l': '.-..',
+        'm': '--',    'n': '-.',    'o': '---',
+        'p': '.--.',  'q': '--.-',  'r': '.-.',
+        's': '...',   't': '-',     'u': '..-',
+        'v': '...-',  'w': '.--',   'x': '-..-',
+        'y': '-.--',  'z': '--..',
+        '1': '.----', '2': '..---', '3': '...--',
+        '4': '....-', '5': '.....', '6': '-....',
+        '7': '--...', '8': '---..', '9': '----.',
+        '0': '-----', ' ': ' / '
+    };
+
+    function convertToMorse() {
+        const input = document.getElementById('inputText').value.toLowerCase();
+        let output = '';
+
+        for (let char of input) {
+            if (morseCode[char]) {
+                output += morseCode[char] + ' ';
+            } else {
+                output += '? ';
+            }
+        }
+
+        document.getElementById('outputText').value = output.trim();
+    }
+</script>
+
+</body>
+</html>
